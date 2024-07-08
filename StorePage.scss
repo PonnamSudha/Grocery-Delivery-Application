@@ -1,0 +1,149 @@
+#store {
+  @extend %flex__container_column;
+  @extend %nowrap;
+  min-height: 100%;
+  min-width: 100%;
+
+  @keyframes blurIn {
+    from { filter: blur(5px) }
+    to { filter: blur(0) }
+  }
+
+  @keyframes grayIn {
+    from { filter: grayscale(70%) }
+    to { filter: grayscale(0) }
+  }
+
+  @keyframes fadeIn {
+    from { filter: opacity(20%) }
+    to { filter: opacity(100%) }
+  }
+
+  .blur {
+    animation: blurIn 2s ease-out 1s;
+  }
+
+  .gray {
+    animation: grayIn 2s ease-out 1s;
+  }
+
+  .fade {
+    animation: fadeIn 1s ease-out;
+  }
+
+  .effect {
+    animation: blurIn 1s ease-out, grayIn 1s ease-out;
+  }
+
+  header {
+    @include header();
+    background: #826cb3;
+    margin: 0 auto;
+    position: fixed;
+    width: 100%;
+    padding: px-to-rem(12px) px-to-rem(60px);
+    z-index: 5;
+    box-shadow: 0px 2px 10px 2px $light-grey-2;
+
+    .header__right {
+      .start {
+        border: 2px solid #fff;
+      }
+    }
+  }
+
+  .no-content {
+    width: px-to-rem(1314px);
+    margin: 0 auto;
+  }
+
+  #grocery__display {
+    flex: 1;
+    @extend %flex__container_column;
+    background: #f6f6f6;
+    padding: 50px 0;
+    margin-top: px-to-rem(60px);
+
+    @media only screen and (min-width: 1800px) {
+      width: 60%;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .grocery__list {
+      @extend %flex__container_row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      max-width: px-to-rem(1314px);
+      margin-left: auto;
+      margin-right: auto;
+
+      .grocery__list_item {
+        flex: 1 0 30%;
+        max-width: px-to-rem(302px);
+        min-width: px-to-rem(302px);
+        background: #FFF;
+        border-radius: 5px;
+        margin: 1%;
+        box-shadow: 0 15px 20px -6px $light-grey-1;
+        overflow-x: hidden;
+
+        .image__wrapper {
+          min-height: 200px;
+          background-size: cover;
+          background-repeat: no-repeat;
+          background-position: center;
+          transition: all .5s linear;
+          filter: grayscale(50%);
+          cursor: pointer;
+
+          &:hover {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+          }
+        }
+
+        .grocery__info {
+          padding: 20px;
+          .grocery__name {
+            font-family: $font-family-josefin;
+            padding: 6px 0;
+            font-size: px-to-rem(18px);
+            text-transform: capitalize;
+          }
+
+          .grocery__price {
+            color: #4d75a1;
+            float: right;
+            font-size: px-to-rem(22px);
+            font-weight: 400;
+          }
+
+          .grocery__buttons {
+
+            .add {
+              font-weight: 500;
+              border-radius: 5px;
+              background: #54739b;
+              border: none;
+              padding: 5px 10px;
+              cursor: pointer;
+              outline: none;
+              color: #f6f6f6;
+              min-width: px-to-rem(100px);
+
+              &:active:not(:disabled) {
+                background: #54739bd1;
+              }
+
+              &:disabled {
+                background: #54739b8f;
+                cursor: not-allowed;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
